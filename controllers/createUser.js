@@ -1,9 +1,7 @@
 const { sendSuccessResponse, sendFailureResponse } = require('../utils/responses.js')
-const {User}  = require("../models");
+const { User } = require("../models");
 
-
-console.log('User', User);
-const createUser = async (req, res, next) => {
+const createUser = async (req, res) => {
   const { name, phone_number } = req.body;
 
   try {
@@ -23,19 +21,12 @@ const createUser = async (req, res, next) => {
       return sendFailureResponse(res, 409, {}, ['User already exist']);
     }
 
-    // Creating user.
-    // await User.create({
-    //   name,
-    //   phone_number
-    // });
-    // console.log("executing create");
-    // If everything went well return success response.
-    return sendSuccessResponse(res, 201, {}, "'User created successfully'");
+    //send success response
+    return sendSuccessResponse(res, 201,user, "'User created successfully'");
 
   } catch (error) {
-    console.log('create user error:', error);
     //return failiure response
-    return sendFailureResponse(res, 500, {}, [INTERNEL_SERVER_ERROR]);
+    return sendFailureResponse(res, 500, {}, ['INTERNEL SERVER ERROR']);
   }
 }
 
