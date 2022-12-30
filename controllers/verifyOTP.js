@@ -6,7 +6,7 @@ const verifyOTP = async (req, res) => {
    const { otp } = req.query;
 
    try {
-       // Find user with the specified id.
+       // Find user with id.
        let user = await User.findOne({
            where: {
                id,
@@ -16,22 +16,23 @@ const verifyOTP = async (req, res) => {
 
        // If user does not exist send failure response.
        if (!user) {
-           return sendFailureResponse(res, 404, {}, ['USER_NOT_EXIST']);
+           return sendFailureResponse(res, 404, {}, ['USER NOT EXIST']);
        }
 
        user = user.toJSON();
        
+       
        // Check if otp is expired
        if(Date.now() > new Date(user.otp_expiration_date.toString()).getTime()) {
-           return sendFailureResponse(res, 400, {}, ['OTP_EXPIRED']);
+           return sendFailureResponse(res, 400, {}, ['OTP EXPIRED']);
        }
 
-       // If everything went well send success response.
-       return sendSuccessResponse(res, 200, user, 'OTP_VERIFIED');
+       // send success response.
+       return sendSuccessResponse(res, 200, user, 'OTP VERIFIED');
 
    } catch (error) {
        console.log('[controllers][users][verifyOTP]', error);
-       return sendFailureResponse(res, 500, {}, ['INTERNEL_SERVER_ERROR']);
+       return sendFailureResponse(res, 500, {}, ['INTERNEL SERVER ERROR']);
    }
 }
 

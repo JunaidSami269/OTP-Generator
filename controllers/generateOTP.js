@@ -24,14 +24,14 @@ const generateOTP = async (req, res, next) => {
 
       // If user does not exist send failure response.
       if(!id) {
-          return sendFailureResponse(res, 404, {}, ['USER_NOT_EXIST']);
+          return sendFailureResponse(res, 404, {}, ['USER NOT EXIST']);
       }
 
       //Send success response with user id if everything went well .
-      return sendSuccessResponse(res, 201, { id }, 'OTP_GENERATED');
+      return sendSuccessResponse(res, 201, { id }, 'OTP GENERATED');
   } catch (error) {
       console.log('[controllers][users][generateOTP]', error);
-      return sendFailureResponse(res, 500, {}, ['INTERNEL_SERVER_ERROR']);
+      return sendFailureResponse(res, 500, {}, ['INTERNEL SERVER ERROR']);
   }
 }
 
