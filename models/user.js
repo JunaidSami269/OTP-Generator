@@ -16,11 +16,12 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     name: DataTypes.STRING,
     otp: DataTypes.STRING,
-    otp_expiration_date: DataTypes.STRING,
+    otp_expiration_date: DataTypes.DATE,
     phone_number: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
   });
+  
   return User;
 };
