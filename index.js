@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./routes/userRoutes');
-const createUser= require('./controllers/createUser.js');
 const port = process.env.PORT || 3000;
 
 
